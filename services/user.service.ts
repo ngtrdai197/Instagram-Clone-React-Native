@@ -1,5 +1,5 @@
-import { makeAutoObservable, observable } from "mobx";
-import { Service } from "typedi";
+import { makeAutoObservable, observable } from 'mobx';
+import { Service } from 'typedi';
 
 @Service()
 export class UserService {
@@ -8,5 +8,5 @@ export class UserService {
       message: observable,
     });
   }
-  public message: string = "React Native with Expo !!!";
+  public message: string = 'React Native with Expo !!!';
 }

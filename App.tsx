@@ -1,20 +1,20 @@
-import React from "react";
-import "reflect-metadata";
-import { Platform, SafeAreaView, StyleSheet, View } from "react-native";
-import AppContainer from "./navigation/root-stack.navigate";
+import React from 'react';
+import 'reflect-metadata';
+import { SafeAreaView, StyleSheet, StatusBar } from 'react-native';
+import CustomNavigationContainer from './navigation';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <AppContainer />
+      <CustomNavigationContainer />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     flex: 1,
-    paddingTop: Platform.OS === "ios" ? 40 : 0,
+    marginTop: StatusBar.currentHeight,
   },
 });
