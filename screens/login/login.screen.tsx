@@ -8,10 +8,10 @@ import {
   StatusBar,
 } from 'react-native';
 import { Input, Button } from 'react-native-elements';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import { ROUTE } from '../../constants/route';
 import { LoginModel } from './login.model';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { StackParamList } from '../../navigation';
 import { UseEffect } from '../../hooks/effect.hook';
 
@@ -24,61 +24,17 @@ interface IProps {
   navigation: LoginScreenNavigationProps;
 }
 
-@observer
-export class LoginScreen extends React.Component<IProps> {
-  private readonly model = new LoginModel();
+export default observer((props: IProps) => {
+  const model = new LoginModel();
 
-  public customHeaderEffect = () => {
-    this.props.navigation.setOptions({
+  const customHeaderEffect = () => {
+    props.navigation.setOptions({
       title: 'Login ',
-      headerRight: this.btnRight,
+      headerRight: btnRight,
     });
   };
 
-  render() {
-    const { navigation } = this.props;
-
-    return (
-      <React.Fragment>
-        <UseEffect effect={this.customHeaderEffect} dependency={[navigation]} />
-        <KeyboardAvoidingView behavior="padding" style={styles.container}>
-          <StatusBar barStyle={'light-content'} />
-          <View>
-            <View style={styles.logo}>
-              <Image
-                source={require('../../assets/instagram-logo.png')}
-                style={{ width: 150, height: 150 }}
-              />
-            </View>
-            <View style={styles.wrapperInput}>
-              <Input
-                placeholder="Email"
-                onChangeText={this.model.changeEmail}
-              />
-              <Input
-                secureTextEntry
-                placeholder="Password"
-                onChangeText={this.model.changePassword}
-              />
-            </View>
-            <View>
-              <Button
-                onPress={() => this.model.onHandleLogin()}
-                title="Login"
-                style={{ marginBottom: 20 }}
-              />
-              <Button
-                onPress={() => navigation.navigate(ROUTE.SIGN_UP)}
-                title="Sign up"
-              />
-            </View>
-          </View>
-        </KeyboardAvoidingView>
-      </React.Fragment>
-    );
-  }
-
-  public btnRight = (): React.ReactElement => {
+  const btnRight = (): React.ReactElement => {
     return (
       <View>
         <Button
@@ -90,7 +46,43 @@ export class LoginScreen extends React.Component<IProps> {
       </View>
     );
   };
-}
+
+  return (
+    <React.Fragment>
+      <UseEffect effect={customHeaderEffect} dependency={[props.navigation]} />
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+        <StatusBar barStyle={'light-content'} />
+        <View>
+          <View style={styles.logo}>
+            <Image
+              source={require('../../assets/instagram-logo.png')}
+              style={{ width: 150, height: 150 }}
+            />
+          </View>
+          <View style={styles.wrapperInput}>
+            <Input placeholder="Email" onChangeText={model.changeEmail} />
+            <Input
+              secureTextEntry
+              placeholder="Password"
+              onChangeText={model.changePassword}
+            />
+          </View>
+          <View>
+            <Button
+              onPress={() => model.onHandleLogin()}
+              title="Login"
+              style={{ marginBottom: 20 }}
+            />
+            <Button
+              onPress={() => props.navigation.navigate(ROUTE.SIGN_UP)}
+              title="Sign up"
+            />
+          </View>
+        </View>
+      </KeyboardAvoidingView>
+    </React.Fragment>
+  );
+});
 
 const styles = StyleSheet.create({
   container: {
