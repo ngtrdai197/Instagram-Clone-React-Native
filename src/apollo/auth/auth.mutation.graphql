@@ -1,0 +1,19 @@
+mutation signInMutation($input: CredentialInput!) {
+  signIn(input: $input) {
+    token
+    refreshToken
+    user {
+      id
+      email
+      fullName
+      username
+      phoneNumber
+      bio
+      dob
+      gender
+      website
+      avatarUrl
+      hasFollow
+    }
+  }
+}

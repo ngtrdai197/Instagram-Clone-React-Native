@@ -12,11 +12,6 @@
     "resolveJsonModule": true,
     "strict": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "paths": {
-      "@/*": [
-        "./"
-      ]
-    }
+    "experimentalDecorators": true
   }
 }

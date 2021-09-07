@@ -36,8 +36,8 @@ export default observer((props: IProps) => {
       <View>
         <View style={styles.logo}>
           <Image
-            source={require('../../assets/instagram-logo.png')}
-            style={{ width: 150, height: 150 }}
+            source={require('../../../assets/instagram-logo.png')}
+            style={{ width: 100, height: 100 }}
           />
         </View>
         <View style={styles.wrapperInput}>
