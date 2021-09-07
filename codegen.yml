@@ -1,0 +1,18 @@
+overwrite: true
+schema: http://localhost:3333/graphql
+documents: ./src/**/*.graphql
+generates:
+  ./src/apollo/types.d.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+
+    config:
+      skipTypename: false
+      withHooks: true
+      withHOC: false
+      withComponent: false
+    hooks:
+      afterAllFileWrite:
+        - prettier --write
